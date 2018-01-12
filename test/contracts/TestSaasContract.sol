@@ -1,18 +1,18 @@
 pragma solidity ^0.4.17;
-
 import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
 import "../../contracts/SaasContract.sol";
 
 contract TestSaasContract {
   SaasContract saasContract;
+  address providerAddress = 0x0;
 
   function beforeEach() {
-    saasContract = new SaasContract(0x0);
+    saasContract = new SaasContract(providerAddress);
   }
 
   function testProviderIsSet() {
-    address expectedProvider = 0x0;
+    address expectedProvider = providerAddress;
     address receivedProvider = saasContract.provider();
     Assert.equal(expectedProvider, receivedProvider, "The provider was not set");
   }
