@@ -14,7 +14,13 @@ contract SaasContract is StandardToken {
     price = _price;
   }
 
-  function subscribe() public {
+  modifier isClient() {
+      require(msg.sender == subscriber);
+      _;
+  }
+
+  function subscribe() isClient public {
+    require(this.balance >= price);
     startDate = block.timestamp;
     endDate = block.timestamp + uint(30*24*60*60*1000);
   }

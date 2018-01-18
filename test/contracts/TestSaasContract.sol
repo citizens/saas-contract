@@ -23,7 +23,9 @@ contract TestSaasContract {
   function testSubscriptionIsSet() {
     uint expectedStartDate = block.timestamp;
     uint expectedEndDate = block.timestamp + uint(30*24*60*60*1000);
-    Assert.equal(saasContract.startDate(), expectedStartDate, "Start date is incorrect");
-    Assert.equal(saasContract.endDate(), expectedEndDate, "End date is incorrect");
+
+    saasContract.subscribe();
+    Assert.equal(saasContract.startDate(), expectedStartDate, "Start should not be set");
+    Assert.equal(saasContract.endDate(), expectedEndDate, "End date not be set");
   }
 }
