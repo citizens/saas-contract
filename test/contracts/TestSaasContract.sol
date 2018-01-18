@@ -20,6 +20,16 @@ contract TestSaasContract {
     Assert.equal(expectedProvider, receivedProvider, "The provider was not set");
   }
 
+  function testBalanceIsSet() {
+    uint receivedBalance = saasContract.getBalance();
+    Assert.equal(initialBalance, receivedBalance, "The provider was not set");
+  }
+
+  function testSubscriptionIsNotSet() {
+    Assert.equal(saasContract.startDate(), 0, "Start date should not be set");
+    Assert.equal(saasContract.endDate(), 0, "End date should not be set");
+  }
+
   function testSubscriptionIsSet() {
     uint expectedStartDate = block.timestamp;
     uint expectedEndDate = block.timestamp + uint(30*24*60*60*1000);

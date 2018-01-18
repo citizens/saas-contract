@@ -24,4 +24,11 @@ contract SaasContract is StandardToken {
     startDate = block.timestamp;
     endDate = block.timestamp + uint(30*24*60*60*1000);
   }
+
+  function getBalance() constant returns(uint) {
+    return this.balance;
+  }
+
+  function() public payable {
+  }
 }
