@@ -6,9 +6,12 @@ import "../../contracts/SaasContract.sol";
 contract TestSaasContract {
   SaasContract saasContract;
   address providerAddress = 0x0;
+  uint price = 1;
+  uint public initialBalance = 1 ether;
 
-  function beforeEach() {
-    saasContract = new SaasContract(providerAddress);
+  function beforeAll() {
+    saasContract = new SaasContract(providerAddress, price);
+    saasContract.transfer(initialBalance);
   }
 
   function testProviderIsSet() {

@@ -4,14 +4,14 @@ import 'zeppelin-solidity/contracts/token/StandardToken.sol';
 contract SaasContract is StandardToken {
   address public provider;
   address public subscriber;
+  uint public price;
   uint public startDate;
   uint public endDate;
 
-  function SaasContract(address _provider) public {
-    require(msg.sender != _provider);
+  function SaasContract(address _provider, uint _price) public {
     provider = _provider;
     subscriber = msg.sender;
-    subscribe();
+    price = _price;
   }
 
   function subscribe() public {
